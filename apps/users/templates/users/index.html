@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/css/styles.css' %}"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login and Registration</title>
+</head>
+<body>
+    
+    <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form action="{% url 'users:register' %}" id=reg_box method="post">
+        {% csrf_token %}
+            <fieldset id="fset">
+                <legend id=legend>Register</legend>
+                <label for="name">Name:</label><br><input type="text" name="name"><br>
+                <label for="username">Username:</label><br><input type="text" name="username"><br>
+                <label for="email">Email:</label><br><input type="text" name="email"><br>
+                <label for="Password">Password:</label><br><input type="password" name="password"><br>
+                <label for="cpassword">Confirm Password:</label><br><input type="password" name="confirm_password"><br>
+                <label for="dob">Date of Birth:</label><br><input type="date" name="dob"><br>
+                <input type="submit" value="Register" id=submit><br>
+        </fieldset>
+        </form>     
+    </div>
+
+    <div>
+        <form action="{% url 'users:login' %}" id=login_box method="POST">
+            {% csrf_token %}
+            <fieldset id="fset">
+                <legend id=legend>Login</legend>
+                <label for="Username">Username:</label><br><input type="text" name="username"><br>
+                <label for="Password">Password:</label><br><input type="password" name="password"><br>
+                <input type="submit" value="Login" id=submit>
+            </fieldset>
+        </form>     
+    </div>
+
+
+
+</body>
+</html>

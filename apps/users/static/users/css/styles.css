@@ -1,0 +1,23 @@
+#reg_box{
+    width: 250px;
+    height: auto;
+    margin-left: 100px;
+    margin-top: 70px;
+    font-weight: bold
+}
+
+#legend{
+    color: red;
+    font-size: 24px;
+}
+#submit{
+    margin-left: 50px;
+}
+
+#login_box{
+    width: 250px;
+    height: auto;
+    margin-left: 100px;
+    margin-top: 50px;
+    font-weight: bold;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <title>Post Summary</title>
+</head>
+<body>
+    <div>
+        <a href="{% url 'two:dashboard' %}">Dashboard</a>
+        <a href="{% url 'two:logout' %}">Logout</a>
+    </div>
+    <div>
+            
+        <h1>Posts by {{posts.poster.username}}</h1> 
+        <h2>Count:</h2><a href="{% url 'two:count' %}"></a>
+
+    
+
+        {% for post in posts.shared_with.all %}
+            {{post.author}}
+            {{post.quote}}
+        {% endfor %}
+           
+    </div>
+</body>
+</html>

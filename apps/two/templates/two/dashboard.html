@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'two/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+    <title>Document</title>
+</head>
+<body>
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <div>
+		<a href="{% url 'two:logout' %}">Logout</a>
+	</div>
+
+    <h1>Welcome, {{request.session.username}}</h1>
+
+    <div class=quotables>
+            <h2>Quotable Quotes:</h2>
+            <table border ="1">
+                <thead>
+                    <tr>
+                       <th></th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    {% for quote in other_quotes %}
+                    <div>
+                        <tr>
+                        <!-- <td><a href="/two/summary/{{item.id}}">{{item.item}}</a></td> -->
+                            <td>{{quote.author}}:{{quote.quote}} <br>
+                                <a href="/two/share/{{quote.id}}">Add to my Wishlist</a><br>
+                            <p>Posted By <a href="/two/summary/{{quote.poster_id}}">{{quote.poster.username}}</a></p>
+                            </td>
+                        </tr>
+                    </div> 
+                </tbody>
+                    {% endfor %}
+            </table>
+        </div>
+
+    <div class=favorites>
+        <h2>Your Favorites:</h2>
+        <table border ="1">
+            <thead>
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>    
+            <tbody>
+                {% for quote in my_quotes %}
+                <div>
+                    <tr>
+                    <!-- <td><a href="/two/summary/{{item.id}}">{{item.item}}</a></td> -->
+                        <td>{{quote.author}}:{{quote.quote}} <br>
+                        <a href="/two/remove/{{quote.id}}">Remove from my My List</a>
+                        <p>Posted By <a href="/two/summary/{{quote.poster_id}}">{{quote.poster.username}}</a></p>
+                        </td>
+                    </tr>
+               </div> 
+            </tbody>
+                {% endfor %}
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id=add>
+        <h1>Contribute a Quote:</h1>
+        <form action="{% url 'two:create' %}" method ='post'>
+        {% csrf_token %}
+            <label for="author">Quoted by:</label>
+            <input type="text" name="author" id="author"><br><br>
+            <label for="quote">Quote:</label>
+            <textarea name="quote" id="quote" cols="50" rows="10"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

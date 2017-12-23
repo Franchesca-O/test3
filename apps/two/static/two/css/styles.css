@@ -1,0 +1,16 @@
+#add {
+width: 700px;
+margin-left: 705px
+}
+
+.quotables{
+width: 700px;
+display: inline-block;
+height:700px;
+}
+
+.favorites{
+width: 700px;
+height: auto;
+display: inline-block
+}
